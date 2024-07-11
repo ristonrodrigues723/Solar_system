@@ -12,7 +12,7 @@
 <body>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script>
-      
+        
         class OrbitControls {
             constructor(camera, domElement) {
                 this.camera = camera;
@@ -104,9 +104,12 @@
                 this.camera.position.add(this.target);
             }
 
+            update() {
+                
+            }
         }
 
-     
+        
         const scene = new THREE.Scene();
         const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
         const renderer = new THREE.WebGLRenderer();
@@ -131,13 +134,13 @@
         starGeometry.setAttribute('position', new THREE.Float32BufferAttribute(starVertices, 3));
         const stars = new THREE.Points(starGeometry, starMaterial);
         scene.add(stars);
-
-       
+  
         const sunGeometry = new THREE.SphereGeometry(5, 32, 32);
         const sunMaterial = new THREE.MeshBasicMaterial({color: 0xFFFF00});
         const sun = new THREE.Mesh(sunGeometry, sunMaterial);
         scene.add(sun);
 
+       
         const planetData = [
             {name: "Mercury", size: 0.383, distance: 10, speed: 0.02, color: 0x8A9A5B},
             {name: "Venus", size: 0.949, distance: 15, speed: 0.015, color: 0xFFA500},
@@ -175,7 +178,7 @@
         camera.position.set(0, 50, 100);
         controls.update();
 
-        
+      
         function animate() {
             requestAnimationFrame(animate);
 
@@ -191,7 +194,7 @@
 
         animate();
 
-       
+      
         window.addEventListener('resize', () => {
             camera.aspect = window.innerWidth / window.innerHeight;
             camera.updateProjectionMatrix();
